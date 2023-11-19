@@ -10,16 +10,19 @@ const ingredients = [
 // Get the ul#ingredients element
 const ingredientsList = document.getElementById('ingredients');
 
+// Use map() to create an array of <li> elements
+const ingredientsArr = ingredients.map((ingredient) => {
+  const listItem = document.createElement('li');
+  listItem.textContent = ingredient;
+  listItem.classList.add('item');
+  return listItem;
+});
+
 // Create a document fragment to hold the new elements
 const fragment = document.createDocumentFragment();
 
-// Loop through the ingredients array and create <li> elements
-ingredients.forEach((ingredient) => {
- const listItem = document.createElement('li');
- listItem.textContent = ingredient;
- listItem.classList.add('item');
- fragment.appendChild(listItem); // Append each <li> to the fragment
-});
+// Append all the <li> elements to the fragment
+fragment.append(...ingredientsArr);
 
-// Append all the <li> elements in one operation to the ul#ingredients list
+// Append the fragment to the ul#ingredients list in one operation
 ingredientsList.appendChild(fragment);
